@@ -55,7 +55,7 @@ export const features = [
 ] as const;
 
 export const author = {
-  email: "woodbird456@gmail.com",
+  email: "admin@meshage.ai",
   meshageId: "mubanjiu",
 } as const;
 
