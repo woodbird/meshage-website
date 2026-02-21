@@ -12,6 +12,7 @@ export const site = {
   logoPath: "/images/meshage.png",
   /** Canonical base URL for SEO (no trailing slash) */
   url: "https://meshage.ai",
+  github: "https://github.com/woodbird/meshage-website",
 } as const;
 
 export const valuePropositions = [
