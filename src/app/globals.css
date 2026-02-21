@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Focus: visible focus ring, never outline:none without replacement (Web Interface Guidelines) */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-current;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Touch: intentional tap highlight; manipulation avoids double-tap zoom delay (guidelines) */
+button,
+[role="button"],
+a {
+  touch-action: manipulation;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Base typography and layout */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply min-h-screen min-w-0 overflow-x-hidden bg-white text-gray-900 antialiased;
+  }
+}
+
+/* Scroll margin for anchor focus (headings) */
+[id] {
+  scroll-margin-top: 2rem;
+}
