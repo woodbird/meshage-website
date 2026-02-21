@@ -67,6 +67,7 @@ const jsonLd = {
   url: site.url,
   description: site.description,
   logo: `${site.url}${site.logoPath}`,
+  sameAs: [site.github],
 };
 
 export default function RootLayout({
