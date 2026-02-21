@@ -10,6 +10,8 @@ export const site = {
   description:
     "Native A2A and A2UI. Agents as first-class citizens. Rich, secure interfaces—beyond chat.",
   logoPath: "/images/meshage.png",
+  /** Canonical base URL for SEO (no trailing slash) */
+  url: "https://meshage.ai",
 } as const;
 
 export const valuePropositions = [
@@ -51,9 +53,15 @@ export const features = [
   },
 ] as const;
 
+export const author = {
+  email: "woodbird456@gmail.com",
+  meshageId: "mubanjiu",
+} as const;
+
 export const navLinks = [
   { href: "#features", label: "Features" },
   { href: "#cta", label: "Join waitlist" },
+  { href: "#contact", label: "Contact" },
 ] as const;
 
 export const cta = {
