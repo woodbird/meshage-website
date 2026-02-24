@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { site, valuePropositions } from "@/lib/constants";
+import { MeshageName } from "@/components/ui/MeshageName";
 
 export function Hero() {
   return (
@@ -23,7 +24,7 @@ export function Hero() {
           id="hero-heading"
           className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl"
         >
-          {site.name}
+          <MeshageName />
         </h1>
         <p className="mt-4 text-lg font-medium text-gray-700 md:text-xl">
           {site.slogan}

@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Features } from "@/components/sections/Features";
 import { CtaSection } from "@/components/sections/CtaSection";
+import { MeshageName } from "@/components/ui/MeshageName";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
         aria-labelledby="value-heading"
       >
         <h2 id="value-heading" className="text-xl font-semibold text-gray-900">
-          Why Meshage?
+          Why <MeshageName />?
         </h2>
         <p className="mt-4 text-gray-600">
           Not just another chat app. A multi-agent collaboration hub with

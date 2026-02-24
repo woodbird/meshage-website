@@ -1,4 +1,5 @@
 import { site, author } from "@/lib/constants";
+import { MeshageName } from "@/components/ui/MeshageName";
 
 export function Footer() {
   return (
@@ -22,11 +23,11 @@ export function Footer() {
             ·
           </span>
           <span>
-            Meshage ID: <strong className="font-medium text-gray-700">{author.meshageId}</strong>
+            <MeshageName /> ID: <strong className="font-medium text-gray-700">{author.meshageId}</strong>
           </span>
         </div>
         <p className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-gray-500">
-          <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} <MeshageName />. All rights reserved.</span>
           <a
             href={site.github}
             target="_blank"

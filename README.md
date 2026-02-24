@@ -1,8 +1,8 @@
-# Meshage
+# **Mesh**age
 
 **Next Gen IM with A2A&A2UI**
 
-Meshage 是面向未来的下一代即时通讯与协作平台：原生支持 **A2A（Agent-to-Agent）** 与 **A2UI（Agent-to-User Interface）**，将 IM 从「聊天工具」升级为**多代理协作的操作系统**。
+**Mesh**age 是面向未来的下一代即时通讯与协作平台：原生支持 **A2A（Agent-to-Agent）** 与 **A2UI（Agent-to-User Interface）**，将 IM 从「聊天工具」升级为**多代理协作的操作系统**。
 
 ## 产品定位
 

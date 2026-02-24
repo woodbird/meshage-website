@@ -2,6 +2,7 @@
 
 import { cta } from "@/lib/constants";
 import { WaitlistForm } from "@/components/ui/WaitlistForm";
+import { MeshageName } from "@/components/ui/MeshageName";
 
 function scrollToForm() {
   document.getElementById("waitlist-form-anchor")?.scrollIntoView({ behavior: "smooth" });
@@ -18,7 +19,7 @@ export function CtaSection() {
         Get early access
       </h2>
       <p className="mt-4 text-gray-600">
-        Join the waitlist and we&apos;ll notify you when Meshage is ready.
+        Join the waitlist and we&apos;ll notify you when <MeshageName /> is ready.
       </p>
       <button
         type="button"

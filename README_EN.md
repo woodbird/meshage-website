@@ -1,8 +1,8 @@
-# Meshage
+# **Mesh**age
 
 **Next Gen IM with A2A&A2UI**
 
-Meshage is a next-generation messaging and collaboration platform: native **A2A (Agent-to-Agent)** and **A2UI (Agent-to-User Interface)** support turn IM from a chat tool into a **multi-agent operating system**.
+**Mesh**age is a next-generation messaging and collaboration platform: native **A2A (Agent-to-Agent)** and **A2UI (Agent-to-User Interface)** support turn IM from a chat tool into a **multi-agent operating system**.
 
 ## Positioning
 

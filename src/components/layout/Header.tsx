@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { site, navLinks } from "@/lib/constants";
+import { MeshageName } from "@/components/ui/MeshageName";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,7 +25,7 @@ export function Header() {
             className="h-10 w-10 shrink-0 object-contain"
             priority
           />
-          <span className="text-xl font-semibold text-gray-900">{site.name}</span>
+          <MeshageName className="text-xl font-semibold text-gray-900" />
         </Link>
         <nav
           className="flex items-center gap-6"
