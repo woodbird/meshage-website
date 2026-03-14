@@ -12,19 +12,19 @@ export function CtaSection() {
   return (
     <section
       id="cta"
-      className="mx-auto max-w-2xl px-4 py-16 text-center"
+      className="mx-auto max-w-2xl px-4 py-16 text-center text-gray-900 dark:text-gray-100"
       aria-labelledby="cta-heading"
     >
-      <h2 id="cta-heading" className="text-2xl font-bold text-gray-900">
+      <h2 id="cta-heading" className="text-2xl font-bold">
         Get early access
       </h2>
-      <p className="mt-4 text-gray-600">
+      <p className="mt-4 text-gray-600 dark:text-gray-300">
         Join the waitlist and we&apos;ll notify you when <MeshageName /> is ready.
       </p>
       <button
         type="button"
         onClick={scrollToForm}
-        className="mt-6 inline-flex rounded-lg bg-gray-900 px-6 py-3 text-white hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+        className="mt-6 inline-flex rounded-lg bg-gray-900 px-6 py-3 text-white hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus-visible:ring-gray-100"
       >
         {cta.primary}
       </button>

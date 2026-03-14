@@ -38,6 +38,10 @@ coverage/
 # Vercel
 .vercel
 
+
+# Pagefind search index
+_pagefind/
+
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts

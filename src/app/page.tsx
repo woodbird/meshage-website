@@ -12,13 +12,13 @@ export default function Home() {
       <Hero />
       <section
         id="value"
-        className="mx-auto max-w-3xl px-4 py-12"
+        className="mx-auto max-w-3xl px-4 py-12 text-gray-900 dark:text-gray-100"
         aria-labelledby="value-heading"
       >
-        <h2 id="value-heading" className="text-xl font-semibold text-gray-900">
+        <h2 id="value-heading" className="text-xl font-semibold">
           Why <MeshageName />?
         </h2>
-        <p className="mt-4 text-gray-600">
+        <p className="mt-4 text-gray-600 dark:text-gray-300">
           Not just another chat app. A multi-agent collaboration hub with
           intent-driven native UI (A2UI), human-in-the-loop workflows, and
           enterprise-grade security.

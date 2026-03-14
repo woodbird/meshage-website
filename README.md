@@ -19,7 +19,14 @@
 - **人在回路**：高风险操作需人类审批，通过 A2UI 确认卡片在对话流中完成确认。
 - **企业级安全**：组件白名单、Schema 校验，无 HTML/JS 注入，从设计上杜绝 XSS。
 
+## 开发与构建
+
+- **开发**：`npm run dev`，主站与文档中心同时可用（文档位于 `/docs/zh`、`/docs/en`）。
+- **构建**：`npm run build`，单次构建产出主站与文档，无需单独构建文档。
+- 文档内容位于 `content/docs/zh` 与 `content/docs/en`，由 Nextra 在 Next.js 内渲染。
+
 ## 了解更多
 
 - 官网：[https://meshage.ai](https://meshage.ai)
+- 文档中心：官网内「Docs」或访问 `/docs/zh`、`/docs/en`。
 - 加入等待名单、获取动态：请访问官网并提交表单。

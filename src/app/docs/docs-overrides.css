@@ -1,0 +1,133 @@
+/* =============================================
+   文档中心样式覆盖
+   ============================================= */
+
+/* --- 浅色模式：正文对比度 --- */
+html:not(.dark) article[class*="nextra-body"] {
+  color: #1a1a1a;
+}
+
+html:not(.dark) article[class*="nextra-body"] a:not([class*="x:"]) {
+  color: #2563eb;
+}
+
+html:not(.dark) article[class*="nextra-body"] a:not([class*="x:"]):hover {
+  color: #1d4ed8;
+}
+
+/* --- 正文区域排版优化 --- */
+article[class*="nextra-body"] {
+  max-width: 52rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  article[class*="nextra-body"] {
+    padding-left: 3rem;
+    padding-right: 2rem;
+  }
+}
+
+/* 段落间距 */
+article[class*="nextra-body"] p {
+  margin-top: 1.25em;
+  line-height: 1.8;
+}
+
+article[class*="nextra-body"] p:first-child {
+  margin-top: 0;
+}
+
+/* 标题间距与层级感 */
+article[class*="nextra-body"] h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+article[class*="nextra-body"] h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+html.dark article[class*="nextra-body"] h2 {
+  border-bottom-color: #374151;
+}
+
+article[class*="nextra-body"] h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* 列表 */
+article[class*="nextra-body"] ul,
+article[class*="nextra-body"] ol {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  padding-left: 1.5em;
+}
+
+article[class*="nextra-body"] li {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+  line-height: 1.75;
+}
+
+/* 代码块 */
+article[class*="nextra-body"] pre {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+article[class*="nextra-body"] code:not(pre code) {
+  font-size: 0.875em;
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+}
+
+/* 表格 */
+article[class*="nextra-body"] table {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+article[class*="nextra-body"] th,
+article[class*="nextra-body"] td {
+  padding: 0.6rem 0.75rem;
+}
+
+/* 引用块 */
+article[class*="nextra-body"] blockquote {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-left-width: 3px;
+}
+
+/* --- 侧栏优化 --- */
+.nextra-sidebar {
+  font-size: 0.875rem;
+}
+
+/* --- 面包屑间距 --- */
+nav[aria-label="breadcrumb"] {
+  margin-bottom: 0.5rem;
+}

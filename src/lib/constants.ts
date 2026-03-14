@@ -61,6 +61,7 @@ export const author = {
 
 export const navLinks = [
   { href: "#features", label: "Features" },
+  { href: "/docs/", label: "Docs" },
   { href: "#cta", label: "Join waitlist" },
   { href: "#contact", label: "Contact" },
 ] as const;

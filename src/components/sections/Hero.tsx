@@ -22,14 +22,14 @@ export function Hero() {
       <div className="mx-auto max-w-3xl text-center">
         <h1
           id="hero-heading"
-          className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl"
+          className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl lg:text-5xl"
         >
           <MeshageName />
         </h1>
-        <p className="mt-4 text-lg font-medium text-gray-700 md:text-xl">
+        <p className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-200 md:text-xl">
           {site.slogan}
         </p>
-        <p className="mt-6 text-base text-gray-600">
+        <p className="mt-6 text-base text-gray-600 dark:text-gray-300">
           {valuePropositions[0]}
         </p>
       </div>

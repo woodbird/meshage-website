@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/constants";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const title = `${site.name} — ${site.slogan}`;
@@ -80,19 +81,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen overflow-x-hidden">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
-        >
-          Skip to main content
-        </a>
-        {children}
+        <ThemeProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+          >
+            Skip to main content
+          </a>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

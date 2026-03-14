@@ -10,11 +10,11 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur dark:border-neutral-700 dark:bg-neutral-900/95">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <Link
           href="/"
-          className="flex items-center gap-2 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+          className="flex items-center gap-2 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:focus-visible:ring-gray-100"
           aria-label={`${site.name} home`}
         >
           <Image
@@ -25,7 +25,7 @@ export function Header() {
             className="h-10 w-10 shrink-0 object-contain"
             priority
           />
-          <MeshageName className="text-xl font-semibold text-gray-900" />
+          <MeshageName className="text-xl font-semibold text-gray-900 dark:text-gray-100" />
         </Link>
         <nav
           className="flex items-center gap-6"
@@ -37,7 +37,7 @@ export function Header() {
               <li key={href}>
                 <Link
                   href={href}
-                  className="text-gray-600 hover:text-gray-900 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+                  className="text-gray-600 hover:text-gray-900 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:text-gray-300 dark:hover:text-gray-100 dark:focus-visible:ring-gray-100"
                 >
                   {label}
                 </Link>
@@ -47,22 +47,22 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="rounded p-2 md:hidden focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+            className="rounded p-2 md:hidden focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:focus-visible:ring-gray-100"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((o) => !o)}
           >
-            <span className="block h-0.5 w-6 bg-gray-700" aria-hidden />
-            <span className="mt-1 block h-0.5 w-6 bg-gray-700" aria-hidden />
-            <span className="mt-1 block h-0.5 w-6 bg-gray-700" aria-hidden />
+            <span className="block h-0.5 w-6 bg-gray-700 dark:bg-gray-300" aria-hidden />
+            <span className="mt-1 block h-0.5 w-6 bg-gray-700 dark:bg-gray-300" aria-hidden />
+            <span className="mt-1 block h-0.5 w-6 bg-gray-700 dark:bg-gray-300" aria-hidden />
           </button>
         </nav>
       </div>
       {/* Mobile menu panel */}
       <div
         id="mobile-menu"
-        className={`overflow-hidden border-t border-gray-100 md:hidden ${menuOpen ? "block" : "hidden"}`}
+        className={`overflow-hidden border-t border-gray-100 dark:border-neutral-700 md:hidden ${menuOpen ? "block" : "hidden"}`}
         aria-hidden={!menuOpen}
       >
         <ul className="flex flex-col gap-2 px-4 py-4">
@@ -70,7 +70,7 @@ export function Header() {
             <li key={href}>
               <Link
                 href={href}
-                className="block py-2 text-gray-600 hover:text-gray-900 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+                className="block py-2 text-gray-600 hover:text-gray-900 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 dark:text-gray-300 dark:hover:text-gray-100 dark:focus-visible:ring-gray-100"
                 onClick={() => setMenuOpen(false)}
               >
                 {label}

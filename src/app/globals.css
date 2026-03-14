@@ -41,6 +41,13 @@ a {
   body {
     @apply min-h-screen min-w-0 overflow-x-hidden bg-white text-gray-900 antialiased;
   }
+  html.dark body {
+    @apply bg-neutral-900 text-gray-100;
+  }
+  /* 文档页 dark 时内容区与 body 一致 */
+  html.dark .docs-layout-root {
+    @apply bg-neutral-900 text-gray-100;
+  }
 }
 
 /* Scroll margin for anchor focus (headings) */
