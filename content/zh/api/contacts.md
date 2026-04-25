@@ -1,248 +1,223 @@
 ---
 title: 联系人 API
-description: 添加联系人、管理联系人列表、处理联系人请求
+description: 由 OpenAPI 规范自动生成 — 2026-04-25T04:38:34Z
 lastUpdated: true
 ---
 
 # 联系人 API
 
-管理用户的联系人关系，包括添加、删除联系人，以及处理联系人请求。
+> 本文档由 `scripts/generate-api-docs.py` 自动生成，基于后端 OpenAPI 规范。
 
 **Base URL:** `http://localhost:8000/api/v1`
-**认证方式:** Session Cookie (`session_id`)
 
 ---
 
-## POST /contacts/by-id
+## GET /api/v1/contacts/resolve
 
-通过用户 ID 发送添加联系人请求。
+Resolve Contact Id
 
-**请求：**
+Resolve a single ID (UUID or account_name) to user or agent. Used for add-contact flow.
 
-```bash
-curl -X POST http://localhost:8000/api/v1/contacts/by-id \
-  -H "Cookie: session_id=YOUR_SESSION" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "user_id": "usr-660f9500-xxxx",
-    "message": "你好，我是 Alice"
-  }'
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `id` | query | string | 是 | User or agent UUID, or user account_name |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
 ```
+
+---
+
+## GET /api/v1/contacts/list
+
+List Contacts
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `type` | query | string | 否 |  |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
+
+## POST /api/v1/contacts/by-id
+
+Add Contact By Id
+
+Add contact by ID. Agent: direct add. Human: message (<=50 chars) required; passphrase optional.
+If target passphrase matches or target does not require approval: direct add + conversation + 2 messages, 201.
+Else: create contact request, 202 pending.
 
 **请求体：**
 
+```json
+{
+  "id": "Id",
+  "message": {},
+  "passphrase": {}
+}
+```
+
 | 字段 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| `user_id` | string | 是 | 目标用户 ID |
-| `message` | string | 否 | 附言 |
+| `id` | string | 是 | Id |
+| `message` | object | 否 | Message |
+| `passphrase` | object | 否 | Passphrase |
 
-**成功响应：** `201 Created`
+**201 Successful Response**
 
-```json
-{
-  "request_id": "creq-001",
-  "from_user_id": "usr-550e8400...",
-  "to_user_id": "usr-660f9500...",
-  "status": "pending",
-  "message": "你好，我是 Alice",
-  "created_at": "2026-03-01T10:00:00Z"
-}
-```
-
-**错误响应：**
-
-| 状态码 | 场景 |
-|--------|------|
-| `404 Not Found` | 目标用户不存在 |
-| `409 Conflict` | 已是联系人或已发送过请求 |
-
----
-
-## GET /contacts
-
-获取当前用户的联系人列表。
-
-**请求：**
-
-```bash
-curl "http://localhost:8000/api/v1/contacts?limit=20&offset=0" \
-  -H "Cookie: session_id=YOUR_SESSION"
-```
-
-**查询参数：**
-
-| 参数 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| `limit` | integer | 否 | 返回条数，默认 20 |
-| `offset` | integer | 否 | 分页偏移量，默认 0 |
-
-**成功响应：** `200 OK`
-
-```json
-[
-  {
-    "id": "contact-001",
-    "user": {
-      "id": "usr-660f9500...",
-      "username": "bob",
-      "display_name": "Bob",
-      "avatar_url": null
-    },
-    "created_at": "2026-03-01T10:00:00Z"
-  }
-]
-```
-
----
-
-## DELETE /contacts/:id {#delete-contact}
-
-删除指定联系人。
-
-**请求：**
-
-```bash
-curl -X DELETE http://localhost:8000/api/v1/contacts/contact-001 \
-  -H "Cookie: session_id=YOUR_SESSION"
-```
-
-**成功响应：** `204 No Content`
-
-**错误响应：**
-
-| 状态码 | 场景 |
-|--------|------|
-| `404 Not Found` | 联系人不存在 |
-
----
-
-## GET /contacts/resolve
-
-根据用户名或手机号解析用户信息（用于添加联系人前的查找）。
-
-**请求：**
-
-```bash
-curl "http://localhost:8000/api/v1/contacts/resolve?username=bob" \
-  -H "Cookie: session_id=YOUR_SESSION"
-```
-
-**查询参数：**
-
-| 参数 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| `username` | string | 是 | 目标用户名 |
-
-**成功响应：** `200 OK`
+**422 Validation Error**
 
 ```json
 {
-  "id": "usr-660f9500...",
-  "username": "bob",
-  "display_name": "Bob",
-  "avatar_url": null
-}
-```
-
-**错误响应：**
-
-| 状态码 | 场景 |
-|--------|------|
-| `404 Not Found` | 用户不存在 |
-
----
-
-## POST /contacts/requests {#post-contacts-requests}
-
-发送联系人请求（通用方式）。
-
-**请求：**
-
-```bash
-curl -X POST http://localhost:8000/api/v1/contacts/requests \
-  -H "Cookie: session_id=YOUR_SESSION" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "to_user_id": "usr-660f9500...",
-    "message": "请加我为好友"
-  }'
-```
-
-**成功响应：** `201 Created`
-
-```json
-{
-  "request_id": "creq-002",
-  "status": "pending",
-  "created_at": "2026-03-01T10:00:00Z"
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
 }
 ```
 
 ---
 
-## GET /contacts/requests {#get-contacts-requests}
+## GET /api/v1/contacts/requests
 
-获取收到的联系人请求列表。
+List Contact Requests
 
-**请求：**
+List pending contact requests (to me).
 
-```bash
-curl http://localhost:8000/api/v1/contacts/requests \
-  -H "Cookie: session_id=YOUR_SESSION"
-```
+**200 Successful Response**
 
-**成功响应：** `200 OK`
+---
+
+## POST /api/v1/contacts/requests/{request_id}/accept
+
+Accept Contact Request
+
+Accept a contact request: add contacts both ways, create conversation with request message + acceptance message. Returns conversation_id.
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `request_id` | path | string | 是 |  |
+
+**201 Successful Response**
+
+**422 Validation Error**
 
 ```json
-[
-  {
-    "request_id": "creq-003",
-    "from_user": {
-      "id": "usr-770a6600...",
-      "username": "charlie",
-      "display_name": "Charlie"
-    },
-    "message": "你好！",
-    "status": "pending",
-    "created_at": "2026-03-01T11:00:00Z"
-  }
-]
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
 ```
 
 ---
 
-## PATCH /contacts/requests/:id {#patch-contact-request}
+## POST /api/v1/contacts/requests/{request_id}/reject
 
-处理联系人请求（接受或拒绝）。
+Reject Contact Request
 
-**请求：**
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `request_id` | path | string | 是 |  |
 
-```bash
-curl -X PATCH http://localhost:8000/api/v1/contacts/requests/creq-003 \
-  -H "Cookie: session_id=YOUR_SESSION" \
-  -H "Content-Type: application/json" \
-  -d '{"action": "accept"}'
+**204 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
 ```
+
+---
+
+## POST /api/v1/contacts
+
+Add Contact
 
 **请求体：**
 
-| 字段 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| `action` | string | 是 | `accept`（接受）或 `reject`（拒绝） |
-
-**成功响应：** `200 OK`
-
 ```json
 {
-  "request_id": "creq-003",
-  "status": "accepted",
-  "updated_at": "2026-03-01T12:00:00Z"
+  "target_type": "Target Type",
+  "target_user_id": {},
+  "target_agent_id": {}
 }
 ```
 
-**错误响应：**
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `target_type` | string | 是 | Target Type |
+| `target_user_id` | object | 否 | Target User Id |
+| `target_agent_id` | object | 否 | Target Agent Id |
 
-| 状态码 | 场景 |
-|--------|------|
-| `404 Not Found` | 请求不存在 |
-| `409 Conflict` | 请求已处理 |
+**201 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---

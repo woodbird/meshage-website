@@ -1,140 +1,151 @@
 ---
 title: 用户 API
-description: 获取和更新用户信息、搜索用户
+description: 由 OpenAPI 规范自动生成 — 2026-04-25T04:38:34Z
 lastUpdated: true
 ---
 
 # 用户 API
 
-管理当前登录用户的个人信息，以及搜索平台上的其他用户。
+> 本文档由 `scripts/generate-api-docs.py` 自动生成，基于后端 OpenAPI 规范。
 
 **Base URL:** `http://localhost:8000/api/v1`
-**认证方式:** Session Cookie (`session_id`)
 
 ---
 
-## GET /users/me
+## GET /api/v1/users/me
 
-获取当前登录用户的详细信息。
+Get Me
 
-**请求：**
-
-```bash
-curl http://localhost:8000/api/v1/users/me \
-  -H "Cookie: session_id=YOUR_SESSION"
-```
-
-**成功响应：** `200 OK`
+**200 Successful Response**
 
 ```json
 {
-  "id": "usr-550e8400-e29b-41d4-a716-446655440000",
-  "username": "alice",
-  "display_name": "Alice",
-  "avatar_url": "https://example.com/avatar.png",
-  "bio": "Meshage 用户",
-  "created_at": "2026-03-01T10:00:00Z",
-  "updated_at": "2026-03-01T12:00:00Z"
+  "id": "Id",
+  "email": {},
+  "phone": {},
+  "display_name": {},
+  "avatar_url": {},
+  "account_name": "Account Name",
+  "account_name_changed_at": {},
+  "contact_require_approval": true,
+  "contact_add_passphrase_is_set": true
 }
 ```
 
-**错误响应：**
-
-| 状态码 | 场景 |
-|--------|------|
-| `401 Unauthorized` | 未登录 |
-
 ---
 
-## PATCH /users/me
+## PATCH /api/v1/users/me
 
-更新当前用户的个人资料。只需传递要修改的字段。
+Update Me
 
-**请求：**
+Update current user profile (display_name, avatar_url, account_name) or session (push_token).
+account_name: unique, 3–32 chars, [a-zA-Z0-9_], changeable at most once per 30 days.
 
-```bash
-curl -X PATCH http://localhost:8000/api/v1/users/me \
-  -H "Cookie: session_id=YOUR_SESSION" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "display_name": "Alice W.",
-    "bio": "热爱编程的 Meshage 开发者",
-    "avatar_url": "https://example.com/new-avatar.png"
-  }'
-```
-
-**请求体（均为可选）：**
-
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `display_name` | string | 显示名称，1-64 字符 |
-| `bio` | string | 个人简介，最长 200 字符 |
-| `avatar_url` | string | 头像 URL |
-
-**成功响应：** `200 OK`
+**请求体：**
 
 ```json
 {
-  "id": "usr-550e8400-e29b-41d4-a716-446655440000",
-  "username": "alice",
-  "display_name": "Alice W.",
-  "avatar_url": "https://example.com/new-avatar.png",
-  "bio": "热爱编程的 Meshage 开发者",
-  "created_at": "2026-03-01T10:00:00Z",
-  "updated_at": "2026-03-01T14:00:00Z"
+  "push_token": {},
+  "display_name": {},
+  "avatar_url": {},
+  "account_name": {},
+  "contact_require_approval": {},
+  "contact_add_passphrase": {}
 }
 ```
 
-**错误响应：**
-
-| 状态码 | 场景 |
-|--------|------|
-| `401 Unauthorized` | 未登录 |
-| `422 Unprocessable Entity` | 参数格式不合法 |
-
----
-
-## GET /users/search
-
-根据关键词搜索平台用户。
-
-**请求：**
-
-```bash
-curl "http://localhost:8000/api/v1/users/search?q=alice&limit=10" \
-  -H "Cookie: session_id=YOUR_SESSION"
-```
-
-**查询参数：**
-
-| 参数 | 类型 | 必填 | 说明 |
+| 字段 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| `q` | string | 是 | 搜索关键词（匹配用户名或显示名称） |
-| `limit` | integer | 否 | 返回条数，默认 20，最大 50 |
-| `offset` | integer | 否 | 分页偏移量，默认 0 |
+| `push_token` | object | 否 | Push Token |
+| `display_name` | object | 否 | Display Name |
+| `avatar_url` | object | 否 | Avatar Url |
+| `account_name` | object | 否 | Account Name |
+| `contact_require_approval` | object | 否 | Contact Require Approval |
+| `contact_add_passphrase` | object | 否 | Contact Add Passphrase |
 
-**成功响应：** `200 OK`
+**200 Successful Response**
+
+**422 Validation Error**
 
 ```json
-[
-  {
-    "id": "usr-550e8400...",
-    "username": "alice",
-    "display_name": "Alice",
-    "avatar_url": "https://example.com/avatar.png"
-  },
-  {
-    "id": "usr-660f9500...",
-    "username": "alice_dev",
-    "display_name": "Alice Developer",
-    "avatar_url": null
-  }
-]
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
 ```
 
-**错误响应：**
+---
 
-| 状态码 | 场景 |
-|--------|------|
-| `401 Unauthorized` | 未登录 |
-| `422 Unprocessable Entity` | 缺少 `q` 参数 |
+## GET /api/v1/users/search
+
+Search Users
+
+Search users by email or phone (for adding as contact). Excludes current user.
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `q` | query | string | 是 |  |
+| `limit` | query | integer | 否 |  |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
+
+## POST /api/v1/users/me/agent-keys
+
+Create Agent Key
+
+**请求体：**
+
+```json
+{}
+```
+
+**201 Successful Response**
+
+```json
+{
+  "api_key": "Api Key"
+}
+```
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---

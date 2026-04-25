@@ -1,6 +1,7 @@
 /**
- * Docs theme copy. 当前仅 zh/en；新增语言需在此添加对应 key 并在 layout 的 DOCS_I18N 与 content/docs 下增加内容。
- * Used by app/docs/[locale]/layout.tsx.
+ * Docs theme copy. 当前仅 zh/en；新增语言需在此添加对应 key，并在 `content/<lang>/`
+ * 下添加对应的 MDX/MD 文件以及 `_meta.js` 菜单。
+ * Used by app/docs/[lang]/layout.tsx.
  */
 export const docsDictionary = {
   zh: {

@@ -1,0 +1,258 @@
+---
+title: 任务透明层 API
+description: 由 OpenAPI 规范自动生成 — 2026-04-25T04:38:34Z
+lastUpdated: true
+---
+
+# 任务透明层 API
+
+> 本文档由 `scripts/generate-api-docs.py` 自动生成，基于后端 OpenAPI 规范。
+
+**Base URL:** `http://localhost:8000/api/v1`
+
+---
+
+## GET /api/v1/conversations/{conversation_id}/traces
+
+List Traces
+
+List traces for a conversation (T011).
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `conversation_id` | path | string | 是 |  |
+| `limit` | query | integer | 否 |  |
+| `cursor` | query | string | 否 |  |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
+
+## POST /api/v1/conversations/{conversation_id}/traces
+
+Create Trace
+
+Create a trace (T012).
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `conversation_id` | path | string | 是 |  |
+
+**请求体：**
+
+```json
+{}
+```
+
+**201 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
+
+## GET /api/v1/conversations/{conversation_id}/traces/{trace_id}
+
+Get Trace Detail
+
+Get trace by id with tree and aggregates (T013).
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `conversation_id` | path | string | 是 |  |
+| `trace_id` | path | string | 是 |  |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
+
+## GET /api/v1/conversations/{conversation_id}/traces/{trace_id}/steps
+
+List Steps
+
+List steps for a trace, optionally as tree (T014).
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `conversation_id` | path | string | 是 |  |
+| `trace_id` | path | string | 是 |  |
+| `tree` | query | boolean | 否 |  |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
+
+## GET /api/v1/conversations/{conversation_id}/traces/{trace_id}/steps/{step_id}
+
+Get Step
+
+Get one step (T015).
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `conversation_id` | path | string | 是 |  |
+| `trace_id` | path | string | 是 |  |
+| `step_id` | path | string | 是 |  |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
+
+## GET /api/v1/conversations/{conversation_id}/traces/{trace_id}/events
+
+List Events
+
+Get event stream for replay (T026).
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `conversation_id` | path | string | 是 |  |
+| `trace_id` | path | string | 是 |  |
+| `step_id` | query | string | 否 |  |
+| `after_ts` | query | string | 否 |  |
+| `limit` | query | integer | 否 |  |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
+
+## POST /api/v1/conversations/{conversation_id}/traces/{trace_id}/steps/{step_id}/actions
+
+Post Human Action
+
+Human action: approve, reject, retry, cancel (T021).
+
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| `conversation_id` | path | string | 是 |  |
+| `trace_id` | path | string | 是 |  |
+| `step_id` | path | string | 是 |  |
+
+**请求体：**
+
+```json
+{
+  "action": "Action",
+  "reason": {},
+  "payload": {}
+}
+```
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `action` | string | 是 | Action |
+| `reason` | object | 否 | Reason |
+| `payload` | object | 否 | Payload |
+
+**200 Successful Response**
+
+**422 Validation Error**
+
+```json
+{
+  "detail": [
+    {
+      "loc": [
+        {}
+      ],
+      "msg": "Message",
+      "type": "Error Type"
+    }
+  ]
+}
+```
+
+---
